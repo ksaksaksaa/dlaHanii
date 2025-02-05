@@ -17,11 +17,13 @@
             // Show the calendar content
             document.getElementById('calendar-content').style.display = 'flex';
             alert('Yay! ❤️');
+
+            sendEmail('Yes!!!!');
         }
         
         function no() {
             alert('Oh no! 😢');
-            // sendEmail('No'); // Send email with "No" response
+            sendEmail('No :((((('); // Send email with "No" response
         }
 
         function sendEmail(answer, date = '') {
@@ -38,15 +40,13 @@
                 });
         }
 
-        function submitDate() {
-            const date = document.getElementById('datePicker').value;
-            if (date) {
-                sendEmail('Yes', date);
-                alert('Date submitted! Check your email. ❤️');
-            } else {
-                alert('Please select a date!');
-            }
-        }
+        // function submitDate() {
+        //     const date = document.getElementById('datePicker').value;
+        //     if (date) {
+        //         sendEmail('Yes');
+        //         alert('Date submitted! Check your email. ❤️');
+        //     }
+        // }
 
         // Function to move the "No" button randomly
         function moveNoButton() {
@@ -75,7 +75,7 @@
         };
     </script>
 
-    <title>❤️Dla Mojej Ukochanej Haniuli❤️</title>
+    <title>❤️Dla Nataszy❤️</title>
 </head>
 <body>
 
@@ -90,9 +90,10 @@
     </div>
 
     <div id="calendar-content" style="display: none;">
-        <h2>Wybierz datę na naszą randkę: ❤️</h2>
-        <input type="date" id="datePicker">
-        <button onclick="submitDate()">Submit</button>
+        <h1>❤️ <i> Widzimy sie w piatek (14.02) </i> ❤️</h1>
+
+        <img src="kitek.png">
+
     </div>
 
 </body>
