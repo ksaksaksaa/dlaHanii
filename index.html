@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your User ID
+        (function() {
+            emailjs.init('4BESdvWb8yXOmy_pH'); // Replace with your EmailJS User ID
+        })();
+
+        function yes() {
+            // Hide the initial content
+            document.getElementById('initial-content').style.display = 'none';
+            // Show the calendar content
+            document.getElementById('calendar-content').style.display = 'flex';
+            alert('Yay! ❤️');
+        }
+        
+        function no() {
+            alert('Oh no! 😢');
+            sendEmail('No'); // Send email with "No" response
+        }
+
+        function sendEmail(answer, date = '') {
+            const templateParams = {
+                answer: answer,
+                date: date
+            };
+
+            emailjs.send('service_nfsgbgu', 'template_fja5h1q', templateParams) // Replace with your Service ID and Template ID
+                .then(function(response) {
+                    console.log('Email sent successfully!', response.status, response.text);
+                }, function(error) {
+                    console.error('Failed to send email:', error);
+                });
+        }
+
+        function submitDate() {
+            const date = document.getElementById('datePicker').value;
+            if (date) {
+                sendEmail('Yes', date);
+                alert('Date submitted! Check your email. ❤️');
+            } else {
+                alert('Please select a date!');
+            }
+        }
+
+        // Function to move the "No" button randomly
+        function moveNoButton() {
+            const noButton = document.getElementById('no');
+            const container = document.querySelector('body'); // Use the body as the container
+            const containerRect = container.getBoundingClientRect();
+
+            // Generate random positions within the container
+            const maxX = containerRect.width - noButton.offsetWidth;
+            const maxY = containerRect.height - noButton.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            // Apply the new position
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        }
+
+        // Add event listeners to move the button on hover or click
+        window.onload = function() {
+            const noButton = document.getElementById('no');
+            noButton.addEventListener('mouseover', moveNoButton);
+            noButton.addEventListener('click', moveNoButton);
+        };
+    </script>
+
+    <title>❤️Dla Mojej Ukochanej Haniuli❤️</title>
+</head>
+<body>
+
+    <div id="initial-content">
+        <img src="hearts-gif.gif" alt="Hearts Animation"> <br>
+        <h2>❤️ Zostaniesz moją walentynką? ❤️</h2> <br>
+
+        <section class="buttons">
+            <button id="yes" onclick="yes()">Tak</button>
+            <button id="no" onclick="no()">Nie</button>
+        </section>
+    </div>
+
+    <div id="calendar-content" style="display: none;">
+        <h2>Wybierz datę na naszą randkę: ❤️</h2>
+        <input type="date" id="datePicker">
+        <button onclick="submitDate()">Submit</button>
+    </div>
+
+</body>
+</html>
